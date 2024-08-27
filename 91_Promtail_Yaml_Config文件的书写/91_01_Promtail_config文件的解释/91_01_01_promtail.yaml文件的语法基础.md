@@ -967,7 +967,12 @@ pipeline_stages:
     选择器是否匹配，如果匹配了则执行子阶段，也就是这里的租户阶段，覆盖值为 `"team-api"`  
     的租户。
 
+
+### 2.3.6 labeldrop
+
 此外在处理阶段还有 `labeldrop`   阶段，它从标签集中删除标签，这些标签与日志条目一起被发送到 Loki。还有一个 `labelallow`  阶段，它只允许将所提供的标签包含在与日志条目一起发送给 Loki 的标签集中。
+
+就是扔掉一些label, 不发给loki
 
 
 
@@ -1056,6 +1061,12 @@ pipeline_stages:
 然后执行的第五个 match 阶段，将会删掉任何具有 `app="promtail"`  标签并包括 `noisy error`  文本的日志数据，并且还将增加 `logentry_drop_lines_total`  指标，标签为 `reason="promtail_noisy_error"`  
 
 最后的 output 输出阶段将日志行的内容改为提取数据中的 msg 的值。我们这里的示例最后输出为 `app1 log line`  
+
+#### 2.4.1.1 selector
+
+`selector: '{app="ivuplan"} |= "[gc"'`
+
+选中 label 为 app 其值为 ivuplan 的项 , 然后 拥有这个label 的 log entry  他的 内容  中包含了 `[gc`
 
 ### 2.4.2 drop
 
