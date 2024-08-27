@@ -3,10 +3,12 @@
 
 LogQL: Log Query Language
 
+Everything starts with a log stream pipeline that collects logs from various sources and stores them into a logstream storage solution like Loki.
+
+
 Loki comes with its own PromQL-inspired language for queries called _LogQL_. LogQL can be considered a distributed `grep` that aggregates log sources. LogQL uses labels and operators for filtering.
 
 There are two types of LogQL queries:
-
 - _Log queries_ return the contents of log lines.
 - _Metric queries_ extend log queries and calculate sample values based on the content of logs from a log query.
 
@@ -23,6 +25,7 @@ There are two types of LogQL queries:
 - 通过过滤规则在日志流中计算相关的度量指标
 
 
+LogQL is composed of a {Stream selector} and a log pipeline where each step of your pipeline is separated by a vertical bar - |.
 
-
+![](image/Pasted%20image%2020240827170619.png)
 
